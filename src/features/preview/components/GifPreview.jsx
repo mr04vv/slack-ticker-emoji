@@ -3,17 +3,6 @@ import React from 'react';
 export const GifPreview = ({ gifUrl, onDownload, onReset, showTitle = true }) => {
   if (!gifUrl) return null;
 
-  const copyToClipboard = async () => {
-    try {
-      const response = await fetch(gifUrl);
-      const blob = await response.blob();
-      const item = new ClipboardItem({ 'image/gif': blob });
-      await navigator.clipboard.write([item]);
-      alert('GIFをクリップボードにコピーしました！');
-    } catch (err) {
-      alert('クリップボードへのコピーに失敗しました');
-    }
-  };
 
   return (
     <div className={`space-y-4 ${showTitle ? 'p-4 bg-gray-50 rounded-lg' : ''}`}>
@@ -40,22 +29,12 @@ export const GifPreview = ({ gifUrl, onDownload, onReset, showTitle = true }) =>
         />
       </div>
 
-      <div className="flex gap-2">
-        <button
-          onClick={onDownload}
-          className="flex-1 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          ダウンロード
-        </button>
-        {navigator.clipboard && navigator.clipboard.write && (
-          <button
-            onClick={copyToClipboard}
-            className="flex-1 py-2 px-4 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
-          >
-            コピー
-          </button>
-        )}
-      </div>
+      <button
+        onClick={onDownload}
+        className="w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+      >
+        ダウンロード
+      </button>
     </div>
   );
 };
