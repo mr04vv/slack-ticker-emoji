@@ -1,5 +1,4 @@
 name = "slack-ticker-emoji"
 compatibility_date = "2025-01-13"
 
-[site]
-bucket = "./dist"
+pages_build_output_dir = "dist"
